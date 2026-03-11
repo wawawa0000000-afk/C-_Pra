@@ -1,4 +1,4 @@
-using System;
+/*using System;
 
 public class SurveyingStake
 {
@@ -34,7 +34,6 @@ public class SurveyingStake
     }
   }
 }
-
 public class Property
 {
   public void ShowStatus(SurveyingStake stake)
@@ -70,3 +69,4 @@ public class Property
     }
   }
 }
+*/
