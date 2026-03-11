@@ -1,0 +1,57 @@
+デリゲート・ラムダ式・イベントの基本まとめ
+この3つは**「他のプログラムへ通知を送る連携システム」**を作るためのセットアップです。
+
+1. デリゲート（Delegate）＝「処理を入れる箱・ルール」
+
+正体: 文字や数字ではなく、**「メソッド（処理そのもの）」**を代入できる特殊な変数（箱）のこと。
+
+役割: 「引数として数値を受け取り、戻り値はない処理」といった、箱に入れるメソッドの**ルール（型）**を決める。
+
+2. ラムダ式（Lambda: =>）＝「使い捨ての省略記法」
+
+正体: わざわざ別の場所に名前付きのメソッドを作らずに、その場で直接処理を書くための短い書き方。
+
+役割: デリゲートの箱にポイッと入れるための、名無しのメソッドを作る。（例: (hp) => Console.WriteLine(hp)）
+
+3. イベント（Event）＝「一斉通知の引き金（トリガー）」
+
+正体: デリゲートをベースに作られた、**「放送局」と「チャンネル登録」**の仕組み。
+
+役割: 「ボスのHPが0になった！」などのタイミングで発動（Invoke）し、あらかじめ登録（+=）されていた複数の処理（ラムダ式など）を一斉に呼び出す。
+
+
+======
+using System;
+
+public class GameSystem
+{
+    // ★課題1：イベントの設立（放送局を作る）
+    // 戻り値も引数もない処理を入れるための「Action」というデリゲートを使って、
+    // 「OnPlayerDeath」という名前の public static event を宣言してください。
+    // ヒント： public static event Action イベント名;
+    public static event Action OnPlayerDeath;
+    
+
+    public static void Main()
+    {
+        Console.WriteLine("--- ゲームスタート ---");
+        Console.WriteLine("システム：各部門、死亡イベントに備えて待機せよ。");
+
+        // ★課題2：イベントへの登録（チャンネル登録）
+        // OnPlayerDeath に、ラムダ式 「 () => { 処理 } 」 を使って以下の2つの処理を += で登録してください。
+        // ① Console.WriteLine("UI部門：『ゲームオーバー』の文字を赤く画面に出します！");
+        // ② Console.WriteLine("音響部門：絶望的なBGMを再生します...");
+        OnPlayerDeath += () => Console.WriteLine("UI部門：『ゲームオーバー』の文字を赤く画面に出します！");
+        OnPlayerDeath += () => Console.WriteLine("音響部門：絶望的なBGMを再生します...");
+
+        Console.WriteLine("システム：準備完了。\n");
+        Console.WriteLine("勇者は 宝箱を 開けた！");
+        Console.WriteLine("しかし それは ミミックだった！");
+        Console.WriteLine("勇者は 噛み砕かれてしまった……（HP 0）\n");
+
+        // ★課題3：イベントの発動（一斉通知の引き金）
+        // プレイヤーが死んだので、OnPlayerDeath を発動（Invoke）させてください。
+        // ヒント： イベント名?.Invoke(); （「?」は誰も登録していなかった時のための安全装置です）
+        OnPlayerDeath?.Invoke();
+    }
+}

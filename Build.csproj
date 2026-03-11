@@ -1,0 +1,16 @@
+<!--基本的なMS Include-->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--project設定-->
+  <PropertyGroup>
+    <!--アウトプット用の拡張子設定-->
+    <OutputType>Exe</OutputType>
+    <!--.NETverの設定-->
+    <TargetFramework>net8.0</TargetFramework>
+    <!--定型文のUsingを明文しなくても入れておく-->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--Nullの許容値を厳しくする-->
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

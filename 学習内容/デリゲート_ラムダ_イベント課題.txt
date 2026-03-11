@@ -1,0 +1,52 @@
+課題：街の防衛と緊急避難システム
+【シナリオ】
+あなたはRPGにおける「街の防衛システム」を開発しています。
+街のHP（耐久力）が攻撃を受けて 0 以下になった瞬間、緊急避難イベントを発動し、関係する各部門へ一斉に指示を出さなければなりません。
+
+【実装の条件】
+
+任意の名前でクラスを作成し、その中に戻り値・引数なしのデリゲート（Action）を用いたイベント OnTownDestroyed を宣言してください。
+
+Main メソッドを作成し、その中で街の初期HPを 100 に設定してください。
+
+OnTownDestroyed イベントに、ラムダ式を使って以下の2つの処理を登録（サブスクライブ）してください。
+
+「市民：急いで地下シェルターへ避難します！」と画面に表示する
+
+「防衛隊：総員撤退！街を放棄する！」と画面に表示する
+
+街が連続で攻撃を受けます。HPから順番に 40、50、20 のダメージを引いていってください（ループを使っても、手書きで順番に処理しても構いません）。
+
+ダメージを受けるたびに、「〇〇のダメージ！ 残りHP: 〇〇」と表示してください。
+
+ダメージ計算の後、もし街のHPが 0 以下になっていたら、OnTownDestroyed イベントを発動させてください。
+
+イベントを発動する際は、必ず「誰も登録していなかった時のための安全な呼び出し方（?.）」を使用してください。
+
+
+==========
+using System;
+
+public class Border
+{
+  public static event Action? OnTownDestroyed;
+  public static void Main()
+  {
+    int TownHP = 100;
+
+    OnTownDestroyed += () => Console.WriteLine("市民：急いで地下シェルターは避難します");
+    OnTownDestroyed += () => Console.WriteLine("防衛隊：総員撤退 街を放棄する");
+
+    int[] damage = { 40, 50, 20 };
+    for (int i = 0; i < 3; i++)
+    {
+      TownHP -= damage[i];
+      Console.WriteLine($"{damage[i]}のダメージ｜残りHP：{TownHP}");
+    }
+
+    if (TownHP <= 0)
+    {
+      OnTownDestroyed?.Invoke();
+    }
+  }
+}

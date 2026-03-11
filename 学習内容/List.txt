@@ -1,0 +1,115 @@
+C# List<T> （リスト）の代表的な機能まとめ
+List<T> は、配列（int[] など）と違って**「後からサイズを自由に変えられる便利な箱」**です。データを操作するための便利なコマンド（メソッド）が最初から用意されています。
+
+1. データを追加する・割り込ませる
+Add(値): リストの一番後ろにデータを追加します。
+
+C#
+List<string> members = new List<string> { "勇者", "戦士" };
+members.Add("魔法使い"); 
+// 結果: { "勇者", "戦士", "魔法使い" }
+Insert(場所, 値): 指定した番号（インデックス）の場所にデータを割り込ませます。後ろのデータは自動でズレてくれます。
+
+C#
+members.Insert(0, "僧侶"); // 0番目（先頭）に割り込む
+// 結果: { "僧侶", "勇者", "戦士", "魔法使い" }
+2. データを削除する・空にする
+RemoveAt(場所): **指定した番号（場所）**のデータをピンポイントで消します。空いた穴は自動で前倒しに詰められます。
+
+C#
+members.RemoveAt(0); // 0番目（僧侶）を消す
+// 結果: { "勇者", "戦士", "魔法使い" }
+Remove(値): 場所が分からなくても、**「その名前のデータ」**を探して消してくれます。
+
+C#
+members.Remove("戦士"); // 戦士を消す
+// 結果: { "勇者", "魔法使い" }
+Clear(): リストの中身を**すべて消去（初期化）**します。ゲームのリセット処理などで活躍します。
+
+C#
+members.Clear();
+// 結果: 中身が空っぽ（要素数0）になる
+3. データを調べる・数える
+Count: 現在リストの中にいくつデータが入っているかを数えます。（※配列の .Length に相当する機能です）
+
+C#
+int num = members.Count; // 現在のデータの数を取得
+Contains(値): リストの中に**そのデータが含まれているか（持っているか）**を true か false で判定します。アイテムの所持判定などに便利です。
+
+C#
+if (members.Contains("勇者"))
+{
+    Console.WriteLine("勇者はパーティにいます！");
+}
+
+============
+基本的なプログラミング　26_0226
+
+using System;
+using System.Drawing;
+
+public class Practice
+{
+  public static void Main()
+  {
+    int num = 3;
+    int[] box = { 1,2,3};
+
+    for(int i=0; i<num; i++)
+    {
+      Print(box);
+    }
+  }
+
+    private static void Print(int [] box)
+  {
+    int buffer;
+    Console.WriteLine($"{box[0]} {box[1]} {box[2]}");
+
+    buffer = box[0];
+    box[0] = box[1];  
+    box[1] = box[2];
+    box[2] = buffer;
+  }
+  /*private static void Print()
+  {
+    int[] box = { 1,2,3};//ここで初期化が起こり毎回同じ値が入る
+    int buffer;
+    Console.WriteLine($"{box[0]} {box[1]} {box[2]}");
+
+    buffer = box[0];
+    box[0] = box[1];  
+    box[1] = box[2];
+    box[2] = buffer;
+  }*/
+}
+
+Listに変更したプログラム
+using System;
+using System.Collections.Generic;
+
+public class Practice
+{
+  public static void Main()
+  {
+    int num = 3;
+    //int[] boxからList<int>に変更
+    List<int> box = new List<int>{1,2,3};
+
+    for(int i=0; i<num; i++)
+    {
+      Print(box);
+    }
+  }
+
+  //List<int>に変更
+    private static void Print(List<int> box)
+  {
+    int buffer;
+    Console.WriteLine($"{box[0]} {box[1]} {box[2]}");
+
+    buffer = box[0];//box[0]をbufferに保存
+    box.RemoveAt(0);//box[0]を削除
+    box.Add(buffer);//bufferをboxの最後に追加
+  }
+}

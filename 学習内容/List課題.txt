@@ -1,0 +1,73 @@
+課題：勇者のアイテムポーチ管理システム
+あなたはRPGゲームのプログラマーです。勇者が持っているアイテムを管理するプログラムを List<string> を使って作成してください。
+以下の「勇者の行動（Step 1 ～ Step 6）」の順番通りに、プログラムを書いてみてください。途中で Console.WriteLine() を使って、中身がどう変化したかを表示しながら進めると分かりやすいです。 
+【勇者の行動シナリオ】
+Step 1：旅の始まり（追加と確認）
+空っぽのアイテムポーチ（List<string> pouch）を作成してください。
+そこに Add を使って、"やくそう"、"ひのきのぼう"、"どくけしそう" の3つを順番に追加してください。
+Count を使って、「現在のアイテム数は 〇 個です」と画面に表示してください。
+Step 2：宝箱を発見（割り込み）
+宝箱から "伝説の剣" を手に入れました。
+すぐに使いたいので、Insert を使ってポーチの**一番最初（0番目）**に割り込ませてください。
+Step 3：装備の整理（検索と削除）
+ポーチの中身を整理します。
+Contains を使って、ポーチの中に "ひのきのぼう" があるかチェックしてください。
+もし持っていたら、Remove を使って "ひのきのぼう" を捨ててください。
+Step 4：戦闘発生！（ピンポイント消費）
+モンスターに遭遇しました！
+一番取り出しやすい場所（0番目）にあるアイテムを瞬時に使います。
+RemoveAt を使って、先頭のアイテムをポーチから消費（削除）してください。
+Step 5：落とし穴の罠！（全ロスト）
+罠にかかり、ポーチの中身をすべてぶちまけてしまいました。
+Clear を使って、ポーチを空っぽにしてください。
+最後に再び Count を使って、「現在のアイテム数は 〇 個です」と表示し、本当に0になったか確認してください。
+
+
+using System;
+using System.Collections.Generic;
+
+public class HeroRPG
+{
+  public static void Main()
+  {
+    List<string> pouch = Start();
+    Game(pouch);
+  }
+  public static List<string> Start()
+  {
+    return new List<string> {"やくそう", "ひのきのぼう", "どくけしそう"};
+  }
+  public static void Game(List<string> pouch)
+  {Console.WriteLine("冒険に出発します！");
+    Console.WriteLine("持ち物:");
+    for(int i = 0; i < pouch.Count; i++)
+    {
+      Console.WriteLine($"{i + 1}. {pouch[i]}");
+    }
+
+    Console.WriteLine("伝説の剣を手に入れた");
+    pouch.Insert(0, "伝説の剣");
+
+    if (pouch.Contains("ひのきのぼう"))
+    {
+      Console.WriteLine("ひのきぼうを持っている");
+      pouch.Remove("ひのきのぼう");
+    }
+    else
+    {
+      Console.WriteLine("ひのきぼうを持っていない");
+      return;
+    }
+
+    Console.WriteLine("===戦闘発生===");
+    int weapon = 0;
+    Console.WriteLine($"持ち物:{weapon + 1}. {pouch[weapon]}を取り出した");
+    Console.WriteLine($"持ち物:{weapon + 1}. {pouch[weapon]}を消費した");
+    pouch.RemoveAt(weapon);
+
+
+    Console.WriteLine("~~~罠にかかった~~~");
+    pouch.Clear();
+    Console.WriteLine ($"持ち物の数:{pouch.Count}");
+  }
+}

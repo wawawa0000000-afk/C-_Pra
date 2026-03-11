@@ -1,0 +1,69 @@
+LINQ メソッド分類と処理の流れ
+この表は、文字列の入力から最終的な数値データの配列を取得するまでの流れに対応するように分類しています。
+1. 入力処理 (Input / Preparation)
+.Split() [スプリット]
+役割: 文字列を区切り文字（スペースなど）で分割し、文字列の配列（string[]）を作成します。
+使い方: inputStr.Split(' ')
+.Select() [セレクト]
+役割: コレクションの各要素を変換し、新しいコレクションを作成します。SQLのSELECT句に相当します。
+使い方: .Select(s => int.Parse(s))
+2. フィルタリング (Filtering: データを絞り込む)
+.Where() [ウェア]
+役割: 特定の条件を満たす要素だけを抽出します。
+使い方: numbers.Where(n => n > 10)
+.Distinct() [ディスティンクト]
+役割: コレクション内の重複した要素を削除し、一意な要素だけに絞り込みます。
+使い方: numbers.Distinct()
+3. ソートと順序付け (Ordering: データの順序を変える)
+.OrderBy() [オーダーバイ]
+役割: 指定したキーに基づいて、データを昇順に並べ替えます。
+使い方: data.OrderBy(d => d.Name)
+.OrderByDescending() [オーダーバイディセンディング]
+役割: 指定したキーに基づいて、データを降順に並べ替えます。
+使い方: data.OrderByDescending(d => d.Price)
+4. 集計 (Aggregation: データをまとめる)
+.Sum() [サム]
+役割: 数値コレクションの合計を計算します。
+使い方: numbers.Sum()
+.Average() [アベレージ]
+役割: 数値コレクションの平均を計算します。
+使い方: numbers.Average()
+.Count() [カウント]
+役割: コレクション内の要素の総数を数えます。
+使い方: data.Count()
+5. 終端操作 (Execution: 処理を確定させる)
+これらのメソッドが呼ばれることで、それまでのLINQクエリ（設計図）が実行され、結果が特定のデータ構造として返されます。
+.ToArray() [トゥーアレイ]
+役割: クエリの結果を配列 (T[]) として確定させ、返します。
+使い方: .ToArray()
+.ToList() [トゥーリスト]
+役割: クエリの結果をリスト (List<T>) として確定させ、返します。
+使い方: .ToList()
+.First() [ファースト]
+役割: クエリの結果の最初の要素を取得します。結果が空だと例外をスローします。
+使い方: data.First()
+.Any() [エニー]
+役割: クエリの結果に要素が一つでもあるかを bool (true/false) で返します。
+使い方: data.Any(d => d.IsActive)
+
+
+===========
+// 1. 文字列を読み込む
+string input = Console.ReadLine(); 
+
+// 2. 読み込んだ文字列を処理し、結果をリストとして取得する
+var processedList = input
+    // Split: 文字列をスペースで分割
+    .Split(' ') 
+    
+    // Where: 空白を除去 (s は仮置きに使われる引数)
+    .Where(s => !string.IsNullOrWhiteSpace(s))
+    
+    // Select: 文字列を int に変換
+    .Select(s => int.Parse(s)) 
+    
+    // OrderBy: 昇順にソート
+    .OrderBy(n => n) 
+    
+    // ToList: 最終結果をリストとして確定
+    .ToList();

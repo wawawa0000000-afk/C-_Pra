@@ -1,0 +1,52 @@
+課題：冒険者ギルドの報酬計算システム
+あなたは冒険者ギルドのシステム担当です。
+ギルドの受付には、クエストから帰ってきた冒険者が**「今日倒したモンスターの経験値リスト」**を、スペース区切りの文字列（テキスト）として提出してきます。
+これをLINQのチェーンを使って一気に処理し、ギルドの規定に沿った結果を出力してください。
+【ギルドの規定（処理手順）】
+以下の文字列が入力されたと仮定します。
+string input = "50 120 10 300 80 15 200";
+文字列の変換とリスト化：
+入力された文字列をスペースで分割（Split）し、数値（int）に変換（Select）して、List<int> を作成してください。
+ザコ敵の除外（フィルタリング）：
+ギルドでは「経験値が100以上のモンスター（ボス級）」しか評価しません。Where を使って、100以上の数値だけを抽出してください。
+見やすいように並び替え（ソート）：
+報告書を見やすくするため、経験値が**高い順（降順）**になるように並び替えてください。
+結果の確定と出力：
+最終的に出来上がったリスト（ToList）を、foreach などをつかって画面に順番に表示してください。
+【ボーナス目標】合計値の計算：
+最後に、抽出したボス級モンスターの**「経験値の合計」**を Sum を使って計算し、「本日の総獲得経験値は 〇〇 です」と表示してください。
+
+
+=========
+using System;
+using System.Linq;//可読性のために記述する
+
+public class Guild
+{
+  public static void Main()
+  {
+    string exp = Result();
+    Prize(exp);
+  }
+  public static string Result()
+  {
+    return "50 120 10 300 80 15 200";
+  }
+  public static void Prize(string exp)
+  {
+    int sum = 0;
+    var processList = exp                               //expを推論型の変数に代入
+      .Split(' ')                                       //スペースで区切る
+      .Select(processList => int.Parse(processList))    //文字列を数値に変換
+      .Where(n => n >= 100)                             //新たにnを宣言し100以上の数値だけを抽出                     
+      .OrderByDescending(n => n)                        //数値を文字列に変換して降順に並び替える
+      .ToList();
+    Console.WriteLine("===報酬獲得===");
+    foreach (var n in processList)
+    {
+      Console.WriteLine(n);
+      sum += n;
+    }
+    Console.WriteLine($"合計経験値:{sum}");
+  }
+}
