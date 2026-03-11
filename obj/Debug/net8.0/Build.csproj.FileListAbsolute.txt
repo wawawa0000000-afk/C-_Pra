@@ -26,3 +26,4 @@ C:\Users\fukuf\Desktop\プログラミングC#\obj\Debug\net8.0\refint\Build.dll
 C:\Users\fukuf\Desktop\プログラミングC#\obj\Debug\net8.0\Build.pdb
 C:\Users\fukuf\Desktop\プログラミングC#\obj\Debug\net8.0\Build.genruntimeconfig.cache
 C:\Users\fukuf\Desktop\プログラミングC#\obj\Debug\net8.0\ref\Build.dll
+C:\Users\fukuf\Desktop\プログラミングC#\obj\Debug\net8.0\Build.sourcelink.json

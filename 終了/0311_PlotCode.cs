@@ -1,3 +1,4 @@
+/*
 using System;
 using System.IO.Compression;
 
@@ -21,7 +22,7 @@ public class Surveying
     Console.WriteLine($"標高：{_altitude}");
   }
 
-  public static void Main()
+  public static void OldMain()
   {
     var p_test = new Surveying();
     // 正常値の代入
@@ -43,3 +44,4 @@ public class Surveying
     Console.WriteLine("プログラムは無事に終了しました。");
   }
 }
+*/
