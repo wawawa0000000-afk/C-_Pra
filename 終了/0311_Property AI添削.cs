@@ -1,3 +1,4 @@
+/*
 using System;
 
 public class SurveyingStake
@@ -25,11 +26,11 @@ public class SurveyingStake
     set
     {
       // ✅ 案1：例外で明示的に失敗させる（StakeIdと同じ方針に統一）
-      /*if (value >= 10000)
+      if (value >= 10000)
       {
         throw new ArgumentOutOfRangeException(nameof(value),
             $"位置は10000m未満で指定してください。（入力値: {value}）");
-      }*/
+      }
 
       // ✅ 案2：どうしてもClampしたいなら、ログを残す
       if (value >= 10000)
@@ -41,7 +42,6 @@ public class SurveyingStake
       _position = value;
     }
   }
-  /*
     // ✅ 将来を見据えた構造
     public class StakePosition  // 座標を独立したクラスに
     {
@@ -49,7 +49,6 @@ public class SurveyingStake
         public float Y { get; set; }
         public float? Altitude { get; set; } // 前回のSurveyingクラスと連携
     }
-  */
 }
 public class Property
 {
@@ -64,7 +63,7 @@ public class Property
     Console.WriteLine($"杭数：{(stake.StakeId == 0 ? "未設定" : stake.StakeId.ToString())}本目");
     Console.WriteLine($"位置：{stake.Position.ToString() ?? "未設定"}m");
   }
-  public static void Main()
+  public static void OldMain()
   {
     var stake = new SurveyingStake();
     var prop = new Property();
@@ -90,3 +89,4 @@ public class Property
     }
   }
 }
+*/
