@@ -5,7 +5,7 @@ public class MapManager
   // 読み取り専用で公開し、追加はAddStakeメソッド経由のみにする
   private List<SurveyingStake> _stakeList = new List<SurveyingStake>();
   public IReadOnlyList<SurveyingStake> StakeList => _stakeList;
-  public static void Main()
+  public static void OldMain()
   {
     MapManager MMana = new MapManager();
 
