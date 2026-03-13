@@ -13,5 +13,15 @@ public class Datebase
     "センター",
     "レフト"};
 
-  public List<string> PlayerName = new List<string>{};
+  public List<string> PlayerName = new List<string>  {
+    "（未登録）",
+    "（未登録）",
+    "（未登録）",
+    "（未登録）",
+    "（未登録）",
+    "（未登録）",
+    "（未登録）",
+    "（未登録）",
+    "（未登録）",
+  };
 }

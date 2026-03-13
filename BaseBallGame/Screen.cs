@@ -13,23 +13,39 @@ public class Screen
     }
 
     Console.WriteLine("プレイヤーたちを登録してください");
-
-    BackActive();
-    for (int i = 0; i < DB_.Position.Count; i++)
+    while (DB_.PlayerName.Contains("（未登録）"))
     {
-      // 選手名リストがまだ空、または足りない場合の安全策
-      string name = (i < DB_.PlayerName.Count) ? DB_.PlayerName[i] : "（未登録）";
+      BackActive();
+      for (int i = 0; i < DB_.Position.Count; i++)
+      {
+        // 選手名リストがまだ空、または足りない場合の安全策
+        string name = (i < DB_.PlayerName.Count) ? DB_.PlayerName[i] : "（未登録）";
 
-      Console.WriteLine($"番号：{i + 1}\t守備位置：{DB_.Position[i]}\t名前：{name}");
+        Console.WriteLine($"番号：{i + 1}\t守備位置：{DB_.Position[i]}\t名前：{name}");
+      }
     }
   }
   public void BackActive()
   {
-    string inputPlayerName = Console.ReadLine() ?? "不足";
-    var nameTable = inputPlayerName
-      .Split(' ')
-      .ToList();
+    Console.WriteLine("番号(1-9)と名前を入力してください（例: 1 イチロー）");
+    string input = Console.ReadLine() ?? "";
+    var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-    DB_.PlayerName = nameTable;
+    // 入力が「番号 名前」の形式かチェック
+    if (parts.Length >= 2 && int.TryParse(parts[0], out int number))
+    {
+      int index = number - 1; // 番号をリストの添え字に変換
+
+      // 範囲内かチェックして、その場所だけを書き換える！
+      if (index >= 0 && index < DB_.PlayerName.Count)
+      {
+        DB_.PlayerName[index] = parts[1]; // ここが「更新」
+        Console.WriteLine($"{parts[0]}番の {parts[1]} を登録しました。");
+      }
+    }
+    else
+    {
+      Console.WriteLine("入力形式が正しくありません。");
+    }
   }
 }
