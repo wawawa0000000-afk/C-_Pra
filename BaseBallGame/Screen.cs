@@ -24,6 +24,16 @@ public class Screen
         Console.WriteLine($"番号：{i + 1}\t守備位置：{DB_.Position[i]}\t名前：{name}");
       }
     }
+
+    if (!DB_.PlayerName.Contains("（未登録）"))
+    {
+        Console.WriteLine("全員の登録が完了しました！");
+        Game.gameEnd = true;
+    }
+    else
+    {
+      throw new Exception("致命的なエラー：登録完了判定に失敗しました。");
+    }
   }
   public void BackActive()
   {
