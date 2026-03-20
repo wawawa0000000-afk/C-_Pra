@@ -5,7 +5,7 @@ public class Game
 {
   public static Screen GameScreen_ = new Screen();
   public static bool gameEnd;
-  public static void Main()
+  public static void OldMain()
   {
     for (;;)
     {
@@ -16,6 +16,6 @@ public class Game
       }
     }
     return;
-    
+
   }
 }
