@@ -1,8 +1,9 @@
+/*
 using System;
 
 public class HPbar
 {
-  public static void Main()
+  public static void OldMain()
   {
     float maxHp = 100f;
     int barMaxCount = 10; // バーの最大文字数
@@ -47,6 +48,9 @@ public class HPbar
     Console.WriteLine("]");
   }
 }
+*/
+
+
 
 /*public class HPbar
 {
