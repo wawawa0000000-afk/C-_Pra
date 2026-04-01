@@ -1,8 +1,8 @@
-using System;
+/*using System;
 
 public class HPbar
 {
-  public static void Main()
+  public static void OldMain()
   {
     float maxHp = 100f;
     int barMaxCount = 10; // バーの最大文字数
@@ -57,3 +57,4 @@ public class HPbar
     return $"HP:{current,3} [{filledStr}{emptyStr}]";
   }
 }
+*/
