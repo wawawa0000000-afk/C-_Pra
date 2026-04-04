@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "MTCMZFf7nMk=",
+  "dgSpecHash": "9wxouutA7Mk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\fukuf\\Desktop\\プログラミングC#\\Build.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\wawaw\\Desktop\\プログラミングC#\\Build.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wawaw\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.25\\microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\wawaw\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.25\\microsoft.windowsdesktop.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\wawaw\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.25\\microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\wawaw\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.25\\microsoft.netcore.app.host.win-x64.8.0.25.nupkg.sha512"
+  ],
   "logs": []
 }
