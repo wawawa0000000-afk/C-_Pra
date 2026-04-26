@@ -7,6 +7,14 @@ public class Argo
 {
   public static void Main()
   { 
+    
+  }
+}
+
+/*
+//三項演算子
+  public static void Main()
+  { 
     StringBuilder sb = new StringBuilder();
     int money = 450, price = 900;
     int alpha = 45, beta = 92;
@@ -21,9 +29,7 @@ public class Argo
       
     Console.WriteLine(sb.ToString());
   }
-}
 
-/*
 //課題３
 正答
     public static void Main()
