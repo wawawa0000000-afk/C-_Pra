@@ -64,7 +64,6 @@ obj/Debug/net8.0/
 ゲーム表示Pra/
  HPBar-AI修正.cs
  HPBar.cs
-並列クローラーボット.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.NETCore.App.Ref/8.0.25/ref/net8.0/
