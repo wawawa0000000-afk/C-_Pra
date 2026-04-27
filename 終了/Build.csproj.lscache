@@ -53,10 +53,12 @@ TemporaryDependencyNodeTargetIdentifier=net8.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
+AsyncWebLoader5.cs
 BaseBallGame/
  DateBase.cs
  Game.cs
  Screen.cs
+IO_1.cs
 obj/Debug/net8.0/
  .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
  Build.AssemblyInfo.cs
@@ -64,7 +66,6 @@ obj/Debug/net8.0/
 ゲーム表示Pra/
  HPBar-AI修正.cs
  HPBar.cs
-並列クローラーボット.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.NETCore.App.Ref/8.0.25/ref/net8.0/
