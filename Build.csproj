@@ -13,4 +13,8 @@
     <Compile Remove="終了\**" />
     
     </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="6.1.0" />
+  </ItemGroup>
   </Project>
