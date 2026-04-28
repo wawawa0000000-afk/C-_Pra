@@ -31,3 +31,6 @@ C:\Users\wawaw\Desktop\プログラミングC#\obj\Debug\net8.0\Build.sourcelink
 C:\Users\wawaw\Desktop\プログラミングC#\obj\Debug\net8.0\Build.csproj.AssemblyReference.cache
 C:\Users\wawaw\Desktop\プログラミングC#\bin\Debug\net8.0\System.Reactive.dll
 C:\Users\wawaw\Desktop\プログラミングC#\obj\Debug\net8.0\Build.csproj.Up2Date
+C:\Users\fukuf\Desktop\プログラミングC#\bin\Debug\net8.0\System.Reactive.dll
+C:\Users\fukuf\Desktop\プログラミングC#\obj\Debug\net8.0\Build.csproj.AssemblyReference.cache
+C:\Users\fukuf\Desktop\プログラミングC#\obj\Debug\net8.0\Build.csproj.Up2Date
