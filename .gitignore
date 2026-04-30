@@ -1,3 +1,5 @@
 # .gitignore の中身
 bin/
 obj/
+obj/
+bin/
