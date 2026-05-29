@@ -57,6 +57,7 @@ BaseBallGame/
  DateBase.cs
  Game.cs
  Screen.cs
+fileIO3.cs
 obj/Debug/net8.0/
  .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
  Build.AssemblyInfo.cs
