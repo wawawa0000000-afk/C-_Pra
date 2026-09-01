@@ -1,2 +1,8 @@
 [Bb]in/
 [Oo]bj/
+.vs/
+*.lscache
+
+# Antigravity 等が追加した不要ファイル（再生成しても Git に含めない）
+web-editor/
+エディタ起動.bat

@@ -51,9 +51,8 @@ public class Gild
 
   public Adventurer? GetAdventurer(int id)
   {
-    if (book.TryGetValue(id, out Adventurer? adventurer))
-      return adventurer;
-    return null;
+    if (!book.TryGetValue(id, out Adventurer? adventurer)) throw new GuildRuleException("そんなIDの冒険者はギルドに在籍していません！");
+    return adventurer;
   }
 
   public void SendMessage(string msg)
@@ -104,6 +103,12 @@ public class DataManager<T>
   public Dictionary<int, T> GetAll() => data;
 }
 
+public class GuildRuleException : Exception
+{
+  // 親（base）にエラーメッセージをそのままパスするだけ
+  public GuildRuleException(string message) : base(message) { }
+}
+
 public class Program
 {
   public static void Main()
@@ -124,38 +129,50 @@ public class Program
 
     for (; ; )
     {
-      Console.WriteLine("\nプレイヤーを選んで（1-3、それ以外で終了）");
-      int.TryParse(Console.ReadLine(), out int G_input);
-      if (G_input < 1 || G_input > 3) break;
-
-      Adventurer? adventurer = gild.GetAdventurer(G_input);
-      if (adventurer == null) break;
-
-      if (adventurer.HitP <= 0)
+      try
       {
-        gild.SendMessage($"{adventurer.Name}はHPが0のため出発できない！");
-        continue;
+        // 💡 案内を「0で終了」に分かりやすく変更
+        Console.WriteLine("\nプレイヤーを選んで（1-3、0で終了）");
+        int.TryParse(Console.ReadLine(), out int G_input);
+
+        // 💡 0 が入力されたら、例外を投げる前に「正常終了」としてループを抜ける！
+        if (G_input == 0) break;
+
+        // 0以外の数値（4 や 99 など）は、予定通りギルドが例外をぶっ飛ばして警告を出す
+        Adventurer adventurer = gild.GetAdventurer(G_input);
+
+        if (adventurer.HitP <= 0)
+        {
+          gild.SendMessage($"{adventurer.Name}はHPが0のため出発できない！");
+          continue;
+        }
+
+        // 〜〜 以下略 〜〜
+
+        Console.WriteLine("クエストを選んで（1:Easy 2:Normal 3:Hard）");
+        int.TryParse(Console.ReadLine(), out int Q_input);
+        if (Q_input < 1 || Q_input > 3) break;
+
+        qLev? selectedQuest = quest.GetQuest(Q_input);
+        if (selectedQuest == null) break;
+
+        if (adventurer.Lev >= selectedQuest.qDiffLev)
+        {
+          adventurer.Lev += 1;
+          gild.SendMessage($"{adventurer.Name}が{selectedQuest.qName}をクリア！ Lev:{adventurer.Lev}");
+        }
+        else
+        {
+          adventurer.HitP -= selectedQuest.damMem;
+          gild.SendMessage($"{adventurer.Name}が{selectedQuest.qName}に失敗… HP:{adventurer.HitP}");
+        }
       }
-
-      Console.WriteLine("クエストを選んで（1:Easy 2:Normal 3:Hard）");
-      int.TryParse(Console.ReadLine(), out int Q_input);
-      if (Q_input < 1 || Q_input > 3) break;
-
-      qLev? selectedQuest = quest.GetQuest(Q_input);
-      if (selectedQuest == null) break;
-
-      if (adventurer.Lev >= selectedQuest.qDiffLev)
+      catch (GuildRuleException ex) // 💡 ギルドのルール違反（例外）をここでキャッチ！
       {
-        adventurer.Lev += 1;
-        gild.SendMessage($"{adventurer.Name}が{selectedQuest.qName}をクリア！ Lev:{adventurer.Lev}");
-      }
-      else
-      {
-        adventurer.HitP -= selectedQuest.damMem;
-        gild.SendMessage($"{adventurer.Name}が{selectedQuest.qName}に失敗… HP:{adventurer.HitP}");
+        // 大爆発させずに、エラーメッセージとして表示して次のループへ繋ぐ
+        gild.SendMessage($"【ギルド警告】{ex.Message}");
       }
     }
-
     Console.WriteLine("\n=== 最終結果 ===");
     gild.ShowAll();
   }

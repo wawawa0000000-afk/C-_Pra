@@ -1,0 +1,16 @@
+---
+description: C#練習フォルダ向け — Webエディタや.bat起動スクリプトを作らない
+alwaysApply: true
+---
+
+# このプロジェクトで作らないもの
+
+このフォルダは Visual Studio / Cursor 上で C# を練習するためのものです。
+
+以下は**作成・復元・提案しない**こと:
+
+- `web-editor/` フォルダ（Node.js / Express 製 Web エディタ）
+- `エディタ起動.bat` やその他 `.bat` 起動スクリプト
+- ブラウザベースの C# エディタや IDE 代替ツール
+
+エディタや実行環境が必要な場合は、既存の `Build.csproj` と Visual Studio / `dotnet run` を使う。
